@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/home/raven/.claude/projects/-home-raven-Development-dynamic-vinyl/5db9da93-1fef-4a1d-afe2-cc91081bd95d/tool-results/webfetch-1779275137271-84a6jx.bin\" /tmp/design.tar.gz)",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p design_extract)",
+      "Bash(tar -xzf design.tar.gz -C design_extract)",
+      "Bash(gunzip -c design.tar.gz)",
+      "Bash(file /tmp/design_extract/*)"
+    ]
+  }
+}
