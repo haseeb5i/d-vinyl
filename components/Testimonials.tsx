@@ -1,0 +1,96 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+import { TESTIMONIALS } from "@/data";
+import React from "react";
+
+function Star() {
+  return <span>★</span>;
+}
+
+export default function Testimonials() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeDot, setActiveDot] = useState(0);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const card = el.querySelector<HTMLElement>(".tcard");
+      if (!card) return;
+      const cw = card.getBoundingClientRect().width + 14;
+      setActiveDot(Math.round(el.scrollLeft / cw));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <section className="section testimonials" id="reviews">
+      <div className="section__header" data-reveal>
+        <div>
+          <div className="eyebrow"><span className="dot" />Reviews · Marin County</div>
+          <h2 className="section__title">
+            What Clients <br />
+            <span className="accent">Drive Away</span> Saying.
+          </h2>
+        </div>
+        <p className="section__desc">
+          Plumbers, restaurateurs, Tesla owners and Porsche enthusiasts.
+          Different vehicles, same standard — work that holds up to the daily,
+          and to the photos.
+        </p>
+      </div>
+
+      <div className="tcards" ref={trackRef} data-reveal-stagger>
+        {TESTIMONIALS.map((t, i) => (
+          <article className="tcard" key={i}>
+            <div className="tcard__stars">
+              <Star /><Star /><Star /><Star /><Star />
+            </div>
+            <p className="tcard__quote">
+              &ldquo;
+              {t.quote.map((q, j) =>
+                typeof q === "string" ? (
+                  <React.Fragment key={j}>{q}</React.Fragment>
+                ) : "hl" in q ? (
+                  <span className="hl" key={j}>{q.hl}</span>
+                ) : (
+                  <span className="hl-sky" key={j}>{q.hlSky}</span>
+                )
+              )}
+              &rdquo;
+            </p>
+            <p className="tcard__body">{t.body}</p>
+            <div className="tcard__foot">
+              <div className="tcard__who">
+                <div className="tcard__avatar">{t.initials}</div>
+                <div>
+                  <div className="tcard__name">{t.name}</div>
+                  <div className="tcard__role">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="tslider-hint" aria-hidden="true">
+        {TESTIMONIALS.map((_, i) => (
+          <span key={i} className={i === activeDot ? "is-on" : ""} />
+        ))}
+      </div>
+
+      <div className="tmarquee" aria-hidden="true">
+        <div className="tmarquee__row">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span className="tmarquee__item" key={i}>
+              <span className="star">★★★★★</span>
+              <b>5.0 Average</b> · Marin County · Bay Area · Tesla · Porsche · Fleet · XPEL · 3M · KPMF · Avery Dennison
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
