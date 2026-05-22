@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ADDITIONAL_SERVICES } from "@/data";
 
 export default function AdditionalServices() {
@@ -21,13 +22,13 @@ export default function AdditionalServices() {
 
       <div className="other-grid other-grid--full" data-reveal-stagger>
         {ADDITIONAL_SERVICES.map(([n, t, d]) => (
-          <div className="other-card" key={n}>
+          <Link className="other-card" key={n} href="/architectural-services">
             <div className="other-card__num">{n}</div>
             <div>
               <div className="other-card__title">{t}</div>
               <div className="other-card__desc">{d}</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

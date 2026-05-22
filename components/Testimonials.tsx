@@ -1,6 +1,9 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import { TESTIMONIALS } from "@/data";
 import React from "react";
 
@@ -9,22 +12,6 @@ function Star() {
 }
 
 export default function Testimonials() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [activeDot, setActiveDot] = useState(0);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const card = el.querySelector<HTMLElement>(".tcard");
-      if (!card) return;
-      const cw = card.getBoundingClientRect().width + 14;
-      setActiveDot(Math.round(el.scrollLeft / cw));
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <section className="section testimonials" id="reviews">
       <div className="section__header" data-reveal>
@@ -42,43 +29,48 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <div className="tcards" ref={trackRef} data-reveal-stagger>
-        {TESTIMONIALS.map((t, i) => (
-          <article className="tcard" key={i}>
-            <div className="tcard__stars">
-              <Star /><Star /><Star /><Star /><Star />
-            </div>
-            <p className="tcard__quote">
-              &ldquo;
-              {t.quote.map((q, j) =>
-                typeof q === "string" ? (
-                  <React.Fragment key={j}>{q}</React.Fragment>
-                ) : "hl" in q ? (
-                  <span className="hl" key={j}>{q.hl}</span>
-                ) : (
-                  <span className="hl-sky" key={j}>{q.hlSky}</span>
-                )
-              )}
-              &rdquo;
-            </p>
-            <p className="tcard__body">{t.body}</p>
-            <div className="tcard__foot">
-              <div className="tcard__who">
-                <div className="tcard__avatar">{t.initials}</div>
-                <div>
-                  <div className="tcard__name">{t.name}</div>
-                  <div className="tcard__role">{t.role}</div>
+      <div data-reveal-stagger>
+        <Swiper
+          modules={[Pagination, A11y]}
+          spaceBetween={20}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          breakpoints={{ 741: { slidesPerView: 2 } }}
+          a11y={{ prevSlideMessage: "Previous testimonial", nextSlideMessage: "Next testimonial" }}
+        >
+          {TESTIMONIALS.map((t, i) => (
+            <SwiperSlide key={i}>
+              <article className="tcard">
+                <div className="tcard__stars">
+                  <Star /><Star /><Star /><Star /><Star />
                 </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div className="tslider-hint" aria-hidden="true">
-        {TESTIMONIALS.map((_, i) => (
-          <span key={i} className={i === activeDot ? "is-on" : ""} />
-        ))}
+                <p className="tcard__quote">
+                  &ldquo;
+                  {t.quote.map((q, j) =>
+                    typeof q === "string" ? (
+                      <React.Fragment key={j}>{q}</React.Fragment>
+                    ) : "hl" in q ? (
+                      <span className="hl" key={j}>{q.hl}</span>
+                    ) : (
+                      <span className="hl-sky" key={j}>{q.hlSky}</span>
+                    )
+                  )}
+                  &rdquo;
+                </p>
+                <p className="tcard__body">{t.body}</p>
+                <div className="tcard__foot">
+                  <div className="tcard__who">
+                    <div className="tcard__avatar">{t.initials}</div>
+                    <div>
+                      <div className="tcard__name">{t.name}</div>
+                      <div className="tcard__role">{t.role}</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       <div className="tmarquee" aria-hidden="true">

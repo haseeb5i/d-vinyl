@@ -19,6 +19,7 @@ export interface Tab {
   id: string;
   name: string;
   short: string;
+  href?: string;
   images: { main: string; detail: string };
   headlineParts: HeadlinePart[];
   body: string;
@@ -40,6 +41,7 @@ export const TABS: Tab[] = [
     id: "commercial",
     name: "Commercial Wraps",
     short: "Commercial Wraps",
+    href: "/commercial-wraps",
     images: {
       main: `${CDN}/03b4fb3a-f9cd-481c-8047-aa83f9a7f6bc/Rocky+Hill+Electric+Commercial+Wrap.jpg`,
       detail: `${CDN}/2a192e6a-003a-47ca-9a34-91600edc9345/High-Tech-Plumbing----Vehicle-Wrap.png`,
@@ -73,6 +75,7 @@ export const TABS: Tab[] = [
     id: "color",
     name: "Color Change",
     short: "Color Change",
+    href: "/color-change",
     images: {
       main: `${CDN}/22f0d7ec-2998-43d9-80ba-04b4ccb8f750/Tesla+Car+Red+Color+Change+Wrap.jpg`,
       detail: `${CDN}/6e9a89e5-b24b-4389-8fe4-635eb56b6261/Wrapping+a+vinyal+car+wrap.JPG`,
@@ -103,6 +106,7 @@ export const TABS: Tab[] = [
     id: "tint",
     name: "Window Tint",
     short: "Window Tint",
+    href: "/window-tint",
     images: {
       main: `${CDN}/e59f6da4-c6d9-483c-87f7-50bdb64d8959/Tesla+Custom+Christmas+Wrap.jpg`,
       detail: `${CDN}/6e9a89e5-b24b-4389-8fe4-635eb56b6261/Wrapping+a+vinyal+car+wrap.JPG`,
@@ -134,6 +138,7 @@ export const TABS: Tab[] = [
     id: "ppf",
     name: "Paint Protection",
     short: "Paint Protection",
+    href: "/paint-protection",
     images: {
       main: `${CDN}/4ae9e7fe-0c28-4dca-89c6-a50cb605eba2/Yellow+Porsche+Car+Paint+Protection+Film+and+Window+Tint.JPG`,
       detail: `${CDN}/2fd6af27-018e-4d2d-9aef-4f7406ba7d32/WhatsApp+Image+2025-01-09+at+5.35.12+PM.jpeg`,

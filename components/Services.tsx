@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import * as Tabs from "@radix-ui/react-tabs";
 import { TABS } from "@/data";
 import type { HeadlinePart } from "@/data";
 import React from "react";
@@ -16,8 +18,9 @@ function ArrowRight({ size = 14 }: { size?: number }) {
 }
 
 export default function Services() {
-  const [active, setActive] = useState(0);
-  const tab = TABS[active];
+  const [activeId, setActiveId] = useState(TABS[0].id);
+  const activeIndex = TABS.findIndex((t) => t.id === activeId);
+  const activeTab = TABS[activeIndex];
 
   return (
     <section className="section" id="services">
@@ -36,95 +39,93 @@ export default function Services() {
       </div>
 
       <div className="tabs">
-        <div className="tabs__pills" role="tablist" data-reveal>
-          {TABS.map((t, i) => (
-            <button
-              key={t.id}
-              role="tab"
-              aria-selected={i === active}
-              className="tabs__pill"
-              onClick={() => setActive(i)}
-            >
-              <span className="pill-num">0{i + 1}</span>
-              {t.short}
-            </button>
-          ))}
-          <span className="tabs__pill-count">{tab.count}</span>
-        </div>
+        <Tabs.Root value={activeId} onValueChange={setActiveId}>
+          <Tabs.List className="tabs__pills" data-reveal aria-label="Services">
+            {TABS.map((t, i) => (
+              <Tabs.Trigger key={t.id} value={t.id} className="tabs__pill">
+                <span className="pill-num">0{i + 1}</span>
+                {t.short}
+              </Tabs.Trigger>
+            ))}
+            <span className="tabs__pill-count" aria-hidden="true">{activeTab.count}</span>
+          </Tabs.List>
 
-        <div className="tab-panel" key={tab.id}>
-          <div className="tab-panel__visual-wrap">
-            <div className="tab-panel__visual">
-              <div className="tab-panel__tag"><span className="dot" />{tab.tag}</div>
-              <Image src={tab.images.main} alt={tab.vehicleLabel} fill style={{ objectFit: "cover" }} />
-              <div className="tab-panel__detail">
-                <Image src={tab.images.detail} alt={tab.detailLabel} fill style={{ objectFit: "cover" }} />
-              </div>
-            </div>
-          </div>
-
-          <div className="tab-panel__copy">
-            <div className="eyebrow"><span className="dot" />0{active + 1} / {TABS.length} · {tab.name}</div>
-            <h3>
-              {tab.headlineParts.map((p: HeadlinePart, i: number) => (
-                <React.Fragment key={i}>
-                  {p.block ? <br /> : null}
-                  <span className={p.cls || ""}>{p.text}</span>
-                </React.Fragment>
-              ))}
-            </h3>
-            <p>{tab.body}</p>
-
-            {tab.chips && (
-              <div className="tab-panel__sublist">
-                <h4>{tab.chipsLabel}</h4>
-                <div className="chips">
-                  {tab.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
+          {TABS.map((tab, i) => (
+            <Tabs.Content key={tab.id} value={tab.id} className="tab-panel">
+              <div className="tab-panel__visual-wrap">
+                <div className="tab-panel__visual">
+                  <div className="tab-panel__tag"><span className="dot" />{tab.tag}</div>
+                  <Image src={tab.images.main} alt={tab.vehicleLabel} fill style={{ objectFit: "cover" }} />
+                  <div className="tab-panel__detail">
+                    <Image src={tab.images.detail} alt={tab.detailLabel} fill style={{ objectFit: "cover" }} />
+                  </div>
                 </div>
               </div>
-            )}
 
-            {tab.features && tab.features.length > 0 && (
-              <div className="tab-panel__features">
-                {tab.features.map(([n, l, d]) => (
-                  <div className="feature" key={n}>
-                    <div className="feature__num">{n}</div>
-                    <div className="feature__lbl">{l}</div>
-                    <div className="feature__desc">{d}</div>
-                  </div>
-                ))}
-              </div>
-            )}
+              <div className="tab-panel__copy">
+                <div className="eyebrow"><span className="dot" />0{i + 1} / {TABS.length} · {tab.name}</div>
+                <h3>
+                  {tab.headlineParts.map((p: HeadlinePart, j: number) => (
+                    <React.Fragment key={j}>
+                      {p.block ? <br /> : null}
+                      <span className={p.cls || ""}>{p.text}</span>
+                    </React.Fragment>
+                  ))}
+                </h3>
+                <p>{tab.body}</p>
 
-            {tab.tiers && (
-              <div className="tiers">
-                {tab.tiers.map(([cls, rank, name, desc]) => (
-                  <div className={`tier tier--${cls}`} key={cls}>
-                    <div>
-                      <div className="tier__rank">{rank === "Good" ? "01" : rank === "Better" ? "02" : "03"}</div>
+                {tab.chips && (
+                  <div className="tab-panel__sublist">
+                    <h4>{tab.chipsLabel}</h4>
+                    <div className="chips">
+                      {tab.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
                     </div>
-                    <div>
-                      <div className="tier__title">{name}</div>
-                      <div className="tier__desc">{desc}</div>
-                    </div>
-                    <div className="tier__tag">{rank}</div>
                   </div>
-                ))}
-              </div>
-            )}
+                )}
 
-            <a href={`#service-${tab.id}`} className="tab-panel__cta">
-              {tab.cta} <ArrowRight size={18} />
-            </a>
+                {tab.features && tab.features.length > 0 && (
+                  <div className="tab-panel__features">
+                    {tab.features.map(([n, l, d]) => (
+                      <div className="feature" key={n}>
+                        <div className="feature__num">{n}</div>
+                        <div className="feature__lbl">{l}</div>
+                        <div className="feature__desc">{d}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-            <div className="brands">
-              <span className="brands__lbl">We install</span>
-              <div className="brands__list">
-                <span>XPEL</span><span>3M</span><span>KPMF</span><span>Avery Dennison</span>
+                {tab.tiers && (
+                  <div className="tiers">
+                    {tab.tiers.map(([cls, rank, name, desc]) => (
+                      <div className={`tier tier--${cls}`} key={cls}>
+                        <div>
+                          <div className="tier__rank">{rank === "Good" ? "01" : rank === "Better" ? "02" : "03"}</div>
+                        </div>
+                        <div>
+                          <div className="tier__title">{name}</div>
+                          <div className="tier__desc">{desc}</div>
+                        </div>
+                        <div className="tier__tag">{rank}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <Link href={tab.href || `#service-${tab.id}`} className="tab-panel__cta">
+                  {tab.cta} <ArrowRight size={18} />
+                </Link>
+
+                <div className="brands">
+                  <span className="brands__lbl">We install</span>
+                  <div className="brands__list">
+                    <span>XPEL</span><span>3M</span><span>KPMF</span><span>Avery Dennison</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </Tabs.Content>
+          ))}
+        </Tabs.Root>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -17,31 +18,32 @@ export default function Footer() {
           <div className="footer__col">
             <h5>Services</h5>
             <ul>
-              <li><a href="#services">Commercial Vehicle Wraps</a></li>
-              <li><a href="#services">Color Change Wraps</a></li>
-              <li><a href="#services">Window Tint</a></li>
-              <li><a href="#services">Paint Protection Film</a></li>
-              <li><a href="#services">Architectural &amp; Commercial</a></li>
+              <li><Link href="/commercial-wraps">Commercial Vehicle Wraps</Link></li>
+              <li><Link href="/color-change">Color Change Wraps</Link></li>
+              <li><Link href="/window-tint">Window Tint</Link></li>
+              <li><Link href="/paint-protection">Paint Protection Film</Link></li>
+              <li><Link href="/architectural-services">Architectural &amp; Brand</Link></li>
             </ul>
           </div>
           <div className="footer__col">
             <h5>Service Area</h5>
             <ul>
-              <li><a href="#">Novato</a></li>
-              <li><a href="#">San Rafael</a></li>
-              <li><a href="#">Petaluma</a></li>
-              <li><a href="#">Marin County</a></li>
-              <li><a href="#">San Francisco Bay Area</a></li>
+              <li><Link href="/areas/novato">Novato</Link></li>
+              <li><Link href="/areas/san-rafael">San Rafael</Link></li>
+              <li><Link href="/areas/petaluma">Petaluma</Link></li>
+              <li><Link href="/areas/marin-county">Marin County</Link></li>
+              <li><Link href="/areas/bay-area">San Francisco Bay Area</Link></li>
             </ul>
           </div>
           <div className="footer__col">
             <h5>Studio</h5>
             <ul>
-              <li><a href="#process">Process</a></li>
-              <li><a href="#reviews">Reviews</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#contact">Request a Quote</a></li>
-              <li><a href="#">Instagram ↗</a></li>
+              <li><Link href="/gallery">Gallery</Link></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/#process">Our Process</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/quote">Request a Quote</Link></li>
             </ul>
           </div>
         </div>
