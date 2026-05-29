@@ -22,7 +22,7 @@ export default function Footer() {
               <li><Link href="/color-change">Color Change Wraps</Link></li>
               <li><Link href="/window-tint">Window Tint</Link></li>
               <li><Link href="/paint-protection">Paint Protection Film</Link></li>
-              <li><Link href="/architectural-services">Architectural &amp; Brand</Link></li>
+              <li><Link href="/wall-graphics">Wall Graphics</Link></li>
             </ul>
           </div>
           <div className="footer__col">

@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import UnderConstruction from "@/components/UnderConstruction";
+import PaintProtectionContent from "./PaintProtectionContent";
 
 export const metadata: Metadata = {
-  title: "Paint Protection Film · Dynamic Wraps & Tint — Marin County",
+  title: "Paint Protection Film · Dynamic Wraps & Tints — Novato, CA",
   description:
-    "XPEL paint protection film (PPF) installation in Marin County. Self-healing, 10-year warranty. Full fronts, track packs and full-car coverage for daily drivers and weekend cars.",
+    "XPEL paint protection film (PPF) installation in Novato, CA. Full fronts, track packs, and full-vehicle coverage. XPEL certified installer with 10+ years of expertise.",
 };
 
 export default function PaintProtectionPage() {
-  return (
-    <UnderConstruction
-      category="Vehicle Wraps · 04"
-      title="Paint"
-      titleAccent="Protection Film."
-      description="XPEL PPF with a 10-year manufacturer warranty. Self-healing film for full fronts, track packs and full-vehicle coverage — the last thing between your paint and the road."
-    />
-  );
+  return <PaintProtectionContent />;
 }

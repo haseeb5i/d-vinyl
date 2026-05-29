@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import UnderConstruction from "@/components/UnderConstruction";
+import AboutPageContent from "./AboutPageContent";
 
 export const metadata: Metadata = {
-  title: "About Us · Dynamic Wraps & Tint — Marin County",
+  title: "About Us · Dynamic Wraps & Tint — Novato, Marin County",
   description:
-    "The story behind Dynamic Wraps & Tint — a Marin County shop built on precision installs, honest advice and work that earns repeat customers.",
+    "Dynamic Wraps & Tints is a team of passionate professionals dedicated to enhancing the aesthetics and functionality of vehicles and interiors. 10+ years combined expertise. Novato, CA.",
 };
 
 export default function AboutPage() {
-  return (
-    <UnderConstruction
-      category="Studio"
-      title="Behind the"
-      titleAccent="Wrap."
-      description="A Marin County shop built on precision installs, honest advice and work that earns repeat customers. We design, print and install — all under one roof."
-    />
-  );
+  return <AboutPageContent />;
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function RevealObserver() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-stagger]");
     if (!("IntersectionObserver" in window)) {
@@ -22,7 +25,7 @@ export default function RevealObserver() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

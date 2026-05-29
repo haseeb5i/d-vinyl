@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import UnderConstruction from "@/components/UnderConstruction";
+import GalleryContent from "./GalleryContent";
 
 export const metadata: Metadata = {
   title: "Gallery & Portfolio · Dynamic Wraps & Tint — Marin County",
   description:
-    "Browse completed vehicle wraps, window tint, PPF and architectural projects by Dynamic Wraps & Tint in Marin County, CA.",
+    "Browse 12 completed vehicle wraps, colour changes, PPF, window tint and commercial fleet projects by Dynamic Wraps & Tint in Marin County, CA.",
 };
 
 export default function GalleryPage() {
-  return (
-    <UnderConstruction
-      category="Portfolio"
-      title="Work We're"
-      titleAccent="Proud Of."
-      description="Completed wraps, tints and protection projects — from Tesla colour changes and Porsche PPF to HVAC fleet wraps and food truck graphics."
-    />
-  );
+  return <GalleryContent />;
 }

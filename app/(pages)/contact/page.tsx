@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import UnderConstruction from "@/components/UnderConstruction";
+import ContactPageContent from "./ContactPageContent";
 
 export const metadata: Metadata = {
   title: "Contact · Dynamic Wraps & Tint — Novato, Marin County",
   description:
-    "Get in touch with Dynamic Wraps & Tint in Novato, CA. Call, email or drop by the studio — Mon–Fri 8:00–18:00.",
+    "Get in touch with Dynamic Wraps & Tint. Call (415) 569-0763, email dynwraps@gmail.com, or visit our shop at 7515 Redwood Blvd., Novato, CA 94945.",
 };
 
 export default function ContactPage() {
-  return (
-    <UnderConstruction
-      category="Get in Touch"
-      title="Let's Get You"
-      titleAccent="Wrapped."
-      description="Call, email or drop a message. We're in Novato, CA — Mon–Fri 8:00–18:00. No project is too big or too specific."
-    />
-  );
+  return <ContactPageContent />;
 }

@@ -5,15 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Drawer } from "vaul";
-
-function ArrowRight({ size = 14 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
-  );
-}
+import { ArrowRight, ChevronDown, X } from "lucide-react";
+import { InstagramIcon } from "@/components/InstagramIcon";
+import { CONTACT } from "@/lib/constants";
 
 const NAV_DROPDOWN = [
   { href: "/commercial-wraps", label: "Commercial Wraps" },
@@ -23,11 +17,11 @@ const NAV_DROPDOWN = [
 ];
 
 const NAV_ITEMS: { key: string; label: string; href?: string }[] = [
-  { key: "arch", label: "Architectural", href: "/architectural-services" },
-  { key: "gallery", label: "Gallery", href: "/gallery" },
+  { key: "wall", label: "Wall Graphics", href: "/wall-graphics" },
   { key: "about", label: "About Us", href: "/about" },
-  { key: "blog", label: "Blog", href: "/blog" },
   { key: "contact", label: "Contact", href: "/contact" },
+  { key: "gallery", label: "Gallery", href: "/gallery" },
+  { key: "blog", label: "Blog", href: "/blog" },
 ];
 
 const DRAWER_GROUPS: { label: string; items: [string, string][] }[] = [
@@ -41,11 +35,9 @@ const DRAWER_GROUPS: { label: string; items: [string, string][] }[] = [
     ],
   },
   {
-    label: "Architectural & Brand",
+    label: "Wall Graphics",
     items: [
-      ["/architectural-services", "Architectural Services"],
-      ["/architectural-services#wall", "Wall Graphics"],
-      ["/architectural-services#signage", "Custom Signage"],
+      ["/wall-graphics", "Wall Graphics"],
     ],
   },
   {
@@ -93,9 +85,7 @@ export default function Nav() {
             <NavigationMenu.Item>
               <NavigationMenu.Trigger className="navdd__trigger">
                 Vehicles Wraps
-                <svg className="navdd__chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
+                <ChevronDown className="navdd__chev" size={12} strokeWidth={2} />
               </NavigationMenu.Trigger>
               <NavigationMenu.Content>
                 <div className="navdd__panel-inner">
@@ -126,8 +116,18 @@ export default function Nav() {
           </div>
         </NavigationMenu.Root>
 
+        <a
+          href={CONTACT.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav__social"
+          aria-label="Instagram"
+        >
+          <InstagramIcon size={18} />
+        </a>
+
         <Link href="/quote" className="nav__cta nav__cta--desktop">
-          Get a Quote <ArrowRight />
+          Get a Quote <ArrowRight size={14} strokeWidth={2.5} />
         </Link>
 
         <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
@@ -150,10 +150,7 @@ export default function Nav() {
                   <Image src="/logo.png" alt="" width={100} height={40} style={{ height: 40, width: "auto" }} />
                 </div>
                 <button className="drawer__close" onClick={close} aria-label="Close menu">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
+                  <X size={22} strokeWidth={2} />
                 </button>
               </div>
 
@@ -165,7 +162,7 @@ export default function Nav() {
                       {g.items.map(([href, label]) => (
                         <Link key={href} href={href} onClick={close}>
                           <span>{label}</span>
-                          <ArrowRight size={14} />
+                          <ArrowRight size={14} strokeWidth={2.5} />
                         </Link>
                       ))}
                     </nav>
@@ -175,11 +172,11 @@ export default function Nav() {
 
               <div className="drawer__foot">
                 <Link href="/quote" className="btn btn--primary drawer__cta" onClick={close}>
-                  Get a Quote <ArrowRight />
+                  Get a Quote <ArrowRight size={14} strokeWidth={2.5} />
                 </Link>
                 <div className="drawer__contact">
-                  <a href="tel:+14155550148">(415) 555-0148</a>
-                  <a href="mailto:hello@dynamicwrapsandtint.com">hello@dynamicwrapsandtint.com</a>
+                  <a href={CONTACT.phoneTel}>{CONTACT.phone}</a>
+                  <a href={CONTACT.emailMailto}>{CONTACT.email}</a>
                 </div>
                 <div className="drawer__meta">Mon–Fri 8:00–18:00 · Novato, CA</div>
               </div>

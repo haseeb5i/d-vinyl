@@ -1,3 +1,5 @@
+import { CDN } from "@/lib/constants";
+
 export const SERVICES_MARQUEE = [
   "Commercial Vehicle Wraps",
   "Color Change Wraps",
@@ -33,8 +35,6 @@ export interface Tab {
   cta: string;
   count: string;
 }
-
-const CDN = "https://images.squarespace-cdn.com/content/v1/6745dcc560869535bc3e0842";
 
 export const TABS: Tab[] = [
   {
