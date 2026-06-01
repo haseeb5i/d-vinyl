@@ -74,14 +74,10 @@ export default function Services() {
                 </h3>
                 <p>{tab.body}</p>
 
-                {tab.chips && (
-                  <div className="tab-panel__sublist">
-                    <h4>{tab.chipsLabel}</h4>
-                    <div className="chips">
-                      {tab.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
-                    </div>
-                  </div>
-                )}
+                <Link href={tab.href || `#service-${tab.id}`} className="tab-panel__cta">
+                  {tab.cta} <ArrowRight size={18} />
+                </Link>
+
 
                 {tab.features && tab.features.length > 0 && (
                   <div className="tab-panel__features">
@@ -94,6 +90,16 @@ export default function Services() {
                     ))}
                   </div>
                 )}
+
+                {tab.chips && (
+                  <div className="tab-panel__sublist">
+                    <h4>{tab.chipsLabel}</h4>
+                    <div className="chips">
+                      {tab.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
+                    </div>
+                  </div>
+                )}
+
 
                 {tab.tiers && (
                   <div className="tiers">
@@ -112,16 +118,13 @@ export default function Services() {
                   </div>
                 )}
 
-                <Link href={tab.href || `#service-${tab.id}`} className="tab-panel__cta">
-                  {tab.cta} <ArrowRight size={18} />
-                </Link>
 
-                <div className="brands">
-                  <span className="brands__lbl">We install</span>
-                  <div className="brands__list">
-                    <span>XPEL</span><span>3M</span><span>KPMF</span><span>Avery Dennison</span>
-                  </div>
-                </div>
+                {/* <div className="brands"> */}
+                {/*   <span className="brands__lbl">We install</span> */}
+                {/*   <div className="brands__list"> */}
+                {/*     <span>XPEL</span><span>3M</span><span>KPMF</span><span>Avery Dennison</span> */}
+                {/*   </div> */}
+                {/* </div> */}
               </div>
             </Tabs.Content>
           ))}

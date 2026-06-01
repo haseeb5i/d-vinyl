@@ -1,19 +1,62 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { CDN } from "@/lib/constants";
+
+const SLIDES = [
+  {
+    src: "https://images.squarespace-cdn.com/content/v1/6745dcc560869535bc3e0842/66c669df-1afd-4294-b62e-09316bdfd32b/Tesla%2BCyber%2BTruck%2BCamouflage%2BWrap-min.jpg",
+    alt: "Tesla Cybertruck Camouflage Wrap",
+  },
+  {
+    src: `${CDN}/03b4fb3a-f9cd-481c-8047-aa83f9a7f6bc/Rocky+Hill+Electric+Commercial+Wrap.jpg`,
+    alt: "Rocky Hill Electric Commercial Fleet Wrap",
+  },
+  {
+    src: `${CDN}/22f0d7ec-2998-43d9-80ba-04b4ccb8f750/Tesla+Car+Red+Color+Change+Wrap.jpg`,
+    alt: "Tesla Model 3 Red Color Change Wrap",
+  },
+  {
+    src: `${CDN}/4ae9e7fe-0c28-4dca-89c6-a50cb605eba2/Yellow+Porsche+Car+Paint+Protection+Film+and+Window+Tint.JPG`,
+    alt: "Porsche Paint Protection Film and Window Tint",
+  },
+];
 
 export default function Hero() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive((a) => (a + 1) % SLIDES.length), 4000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <section className="hero" id="top">
       <div className="hero__bg">
-        <Image
-          src="https://images.squarespace-cdn.com/content/v1/6745dcc560869535bc3e0842/66c669df-1afd-4294-b62e-09316bdfd32b/Tesla%2BCyber%2BTruck%2BCamouflage%2BWrap-min.jpg"
-          alt="Tesla Cybertruck Camouflage Wrap"
-          fill
-          priority
-          style={{ objectFit: "cover" }}
-        />
+        {SLIDES.map((slide, i) => (
+          <div key={slide.src} className={`hero__slide${i === active ? " is-active" : ""}`}>
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              sizes="70vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        ))}
+        <div className="hero__carousel-dots" aria-hidden="true">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              className={`hero__dot${i === active ? " is-active" : ""}`}
+              onClick={() => setActive(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
       <div className="hero__bar" aria-hidden="true" />
 

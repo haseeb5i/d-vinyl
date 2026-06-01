@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
+import StickyBanner from "@/components/StickyBanner";
 import "./globals.css";
 
 const raleway = Raleway({
@@ -22,7 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={raleway.variable}>
-      <body>{children}</body>
+      <body>
+        <StickyBanner />
+        {children}
+      </body>
     </html>
   );
 }
