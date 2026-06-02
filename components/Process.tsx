@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const STEPS = [
   {
     n: "01",
@@ -27,8 +23,6 @@ const STEPS = [
 ];
 
 export default function Process() {
-  const [active, setActive] = useState(0);
-
   return (
     <section className="process" id="process">
       <div className="section">
@@ -47,29 +41,18 @@ export default function Process() {
           </p>
         </div>
 
-        <div className="proc-stepper" role="tablist" data-reveal-stagger>
-          {STEPS.map((s, i) => (
-            <button
-              key={s.n}
-              role="tab"
-              aria-selected={i === active}
-              className="proc-step-btn"
-              onClick={() => setActive(i)}
-            >
-              <div className="proc-step-btn__num">{s.n}</div>
-              <div>
-                <div className="proc-step-btn__tag">Step · {s.tag}</div>
-                <div className="proc-step-btn__title">{s.title}</div>
-              </div>
-            </button>
+        <div className="proc-grid" data-reveal-stagger>
+          {STEPS.map((s) => (
+            <div key={s.n} className="proc-col">
+              <div className="proc-col__num">{s.n}</div>
+              <div className="proc-col__tag">Step · {s.tag}</div>
+              <div className="proc-col__title">{s.title}</div>
+              <p className="proc-col__desc">{s.desc}</p>
+              <ul className="proc-col__list">
+                {s.list.map((l) => <li key={l}>{l}</li>)}
+              </ul>
+            </div>
           ))}
-        </div>
-
-        <div className="proc-panel" key={STEPS[active].n}>
-          <p className="proc-panel__desc">{STEPS[active].desc}</p>
-          <ul className="proc-panel__list">
-            {STEPS[active].list.map((l) => <li key={l}>{l}</li>)}
-          </ul>
         </div>
       </div>
     </section>

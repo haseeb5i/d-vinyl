@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ServicePageHero from "@/components/ServicePageHero";
 import { CDN, CONTACT } from "@/lib/constants";
+import { TABS } from "@/data";
+
+const TAB = TABS.find((t) => t.id === "commercial")!;
 
 const BENEFITS = [
   {
@@ -85,6 +88,39 @@ export default function CommercialWrapsContent() {
                 <p className="svc-benefit-card__desc">{b.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Features & Vehicle Types ─────────────────────── */}
+      <section className="svc-details">
+        <div className="section">
+          <div className="section__header" data-reveal>
+            <div>
+              <div className="eyebrow"><span className="dot" />What&apos;s Included</div>
+              <h2 className="section__title">
+                How We<br /><span className="accent">Do It.</span>
+              </h2>
+            </div>
+            <p className="section__desc">
+              Every job runs through the same four pillars — from the first design proof to
+              the final edge tuck in the bay.
+            </p>
+          </div>
+          <div className="svc-features-grid" data-reveal-stagger>
+            {TAB.features.map(([num, label, desc]) => (
+              <div key={num} className="svc-feature-card">
+                <div className="svc-feature-card__num">{num}</div>
+                <div className="svc-feature-card__label">{label}</div>
+                <div className="svc-feature-card__desc">{desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className="svc-chips-block" data-reveal>
+            <p className="svc-chips-block__label">{TAB.chipsLabel}</p>
+            <div className="chips">
+              {TAB.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
+            </div>
           </div>
         </div>
       </section>

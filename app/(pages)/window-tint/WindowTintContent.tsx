@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ServicePageHero from "@/components/ServicePageHero";
 import { CDN, CONTACT } from "@/lib/constants";
+import { TABS } from "@/data";
+
+const TAB = TABS.find((t) => t.id === "tint")!;
 
 const BENEFITS = [
   {
@@ -90,6 +93,44 @@ export default function WindowTintContent() {
                 <p className="svc-benefit-card__desc">{b.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── XPEL Tiers & Applications ────────────────────── */}
+      <section className="svc-details">
+        <div className="section">
+          <div className="section__header" data-reveal>
+            <div>
+              <div className="eyebrow"><span className="dot" />XPEL Film Lineup</div>
+              <h2 className="section__title">
+                Three Tiers.<br /><span className="accent">One Standard.</span>
+              </h2>
+            </div>
+            <p className="section__desc">
+              Every film is XPEL — signal-safe, non-metallic, and installed by our
+              certified team. Pick the tier that fits your heat, clarity, and budget goals.
+            </p>
+          </div>
+          <div className="tiers" data-reveal-stagger>
+            {TAB.tiers!.map(([cls, rank, name, desc]) => (
+              <div key={cls} className={`tier tier--${cls}`}>
+                <div>
+                  <div className="tier__rank">{rank === "Good" ? "01" : rank === "Better" ? "02" : "03"}</div>
+                </div>
+                <div>
+                  <div className="tier__title">{name}</div>
+                  <div className="tier__desc">{desc}</div>
+                </div>
+                <div className="tier__tag">{rank}</div>
+              </div>
+            ))}
+          </div>
+          <div className="svc-chips-block" data-reveal>
+            <p className="svc-chips-block__label">{TAB.chipsLabel}</p>
+            <div className="chips">
+              {TAB.chips.map((c) => <span className="chip" key={c}>{c}</span>)}
+            </div>
           </div>
         </div>
       </section>

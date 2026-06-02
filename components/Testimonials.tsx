@@ -29,60 +29,49 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <div data-reveal-stagger>
-        <Swiper
-          modules={[Pagination, A11y]}
-          spaceBetween={20}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          breakpoints={{ 741: { slidesPerView: 2 } }}
-          a11y={{ prevSlideMessage: "Previous testimonial", nextSlideMessage: "Next testimonial" }}
-        >
-          {TESTIMONIALS.map((t, i) => (
-            <SwiperSlide key={i}>
-              <article className="tcard">
-                <div className="tcard__stars">
-                  <Star /><Star /><Star /><Star /><Star />
-                </div>
-                <p className="tcard__quote">
-                  &ldquo;
-                  {t.quote.map((q, j) =>
-                    typeof q === "string" ? (
-                      <React.Fragment key={j}>{q}</React.Fragment>
-                    ) : "hl" in q ? (
-                      <span className="hl" key={j}>{q.hl}</span>
-                    ) : (
-                      <span className="hl-sky" key={j}>{q.hlSky}</span>
-                    )
-                  )}
-                  &rdquo;
-                </p>
-                <p className="tcard__body">{t.body}</p>
-                <div className="tcard__foot">
-                  <div className="tcard__who">
-                    <div className="tcard__avatar">{t.initials}</div>
-                    <div>
-                      <div className="tcard__name">{t.name}</div>
-                      <div className="tcard__role">{t.role}</div>
-                    </div>
+      <Swiper
+        modules={[Pagination, A11y]}
+        spaceBetween={20}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        breakpoints={{ 741: { slidesPerView: 2, spaceBetween: 24 } }}
+        a11y={{ prevSlideMessage: "Previous testimonial", nextSlideMessage: "Next testimonial" }}
+        className="testimonials-swiper"
+        data-reveal
+      >
+        {TESTIMONIALS.map((t, i) => (
+          <SwiperSlide key={i}>
+            <article className="tcard">
+              <div className="tcard__stars">
+                <Star /><Star /><Star /><Star /><Star />
+              </div>
+              <p className="tcard__quote">
+                &ldquo;
+                {t.quote.map((q, j) =>
+                  typeof q === "string" ? (
+                    <React.Fragment key={j}>{q}</React.Fragment>
+                  ) : "hl" in q ? (
+                    <span className="hl" key={j}>{q.hl}</span>
+                  ) : (
+                    <span className="hl-sky" key={j}>{q.hlSky}</span>
+                  )
+                )}
+                &rdquo;
+              </p>
+              <p className="tcard__body">{t.body}</p>
+              <div className="tcard__foot">
+                <div className="tcard__who">
+                  <div className="tcard__avatar">{t.initials}</div>
+                  <div>
+                    <div className="tcard__name">{t.name}</div>
+                    <div className="tcard__role">{t.role}</div>
                   </div>
                 </div>
-              </article>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      <div className="tmarquee" aria-hidden="true">
-        <div className="tmarquee__row">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <span className="tmarquee__item" key={i}>
-              <span className="star">★★★★★</span>
-              <b>5.0 Average</b> · Marin County · Bay Area · Tesla · Porsche · Fleet · XPEL · 3M · KPMF · Avery Dennison
-            </span>
-          ))}
-        </div>
-      </div>
+              </div>
+            </article>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import ContactForm from "@/components/ContactForm";
-import { CONTACT, HOURS } from "@/lib/constants";
+import { CONTACT } from "@/lib/constants";
 
 export default function Contact() {
   return (
@@ -27,6 +27,7 @@ export default function Contact() {
               <div className="contact-block__lbl">Visit The Bay</div>
               <div className="contact-block__val">{CONTACT.address}</div>
               <div className="contact-block__sub">{CONTACT.cityState} · Marin County</div>
+              <div className="contact-block__sub">Mon–Sat 8am–6pm · Sun Closed</div>
             </div>
             <div className="contact-block">
               <div className="contact-block__lbl">Direct Line</div>
@@ -41,17 +42,6 @@ export default function Contact() {
                 <a href={CONTACT.emailMailto}>{CONTACT.email}</a>
               </div>
               <div className="contact-block__sub">Send photos and we&apos;ll send back numbers.</div>
-            </div>
-            <div className="contact-block">
-              <div className="contact-block__lbl">Bay Hours</div>
-              <div className="hours-grid">
-                {HOURS.map((h) => (
-                  <div key={h.days} className={`hours-row${h.closed ? " is-closed" : ""}`}>
-                    <span>{h.days}</span>
-                    <span>{h.time}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>

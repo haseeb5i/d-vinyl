@@ -1,8 +1,6 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import MarqueeSection from "@/components/MarqueeSection";
 import Services from "@/components/Services";
-import AdditionalServices from "@/components/AdditionalServices";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
@@ -16,9 +14,7 @@ export default function Home() {
       <RevealObserver />
       <Nav />
       <Hero />
-      <MarqueeSection />
       <Services />
-      <AdditionalServices />
       <Portfolio />
       <Process />
       <Testimonials />

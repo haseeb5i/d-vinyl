@@ -1,9 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { CDN } from "@/lib/constants";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
 
 const SLIDES = [
   {
@@ -25,48 +28,33 @@ const SLIDES = [
 ];
 
 export default function Hero() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setActive((a) => (a + 1) % SLIDES.length), 4000);
-    return () => clearInterval(t);
-  }, []);
-
   return (
     <section className="hero" id="top">
       <div className="hero__bg">
-        {SLIDES.map((slide, i) => (
-          <div key={slide.src} className={`hero__slide${i === active ? " is-active" : ""}`}>
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={i === 0}
-              sizes="70vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        ))}
-        <div className="hero__carousel-dots" aria-hidden="true">
-          {SLIDES.map((_, i) => (
-            <button
-              key={i}
-              className={`hero__dot${i === active ? " is-active" : ""}`}
-              onClick={() => setActive(i)}
-              aria-label={`Go to slide ${i + 1}`}
-            />
+        <Swiper
+          modules={[Autoplay, EffectFade]}
+          effect="fade"
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          loop
+          className="hero__swiper"
+          aria-hidden="true"
+        >
+          {SLIDES.map((slide, i) => (
+            <SwiperSlide key={slide.src}>
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                priority={i === 0}
+                style={{ objectFit: "cover" }}
+              />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
+        <div className="hero__overlay" aria-hidden="true" />
       </div>
-      <div className="hero__bar" aria-hidden="true" />
 
       <div className="hero__inner">
-        <div className="hero__meta">
-          <span>● Now booking · Spring 2026</span>
-          <span>Marin County · Novato · San Rafael · Petaluma · Bay Area</span>
-          <span />
-        </div>
-
         <div className="hero__body">
           <div className="hero__copy">
             <div className="hero__eyebrow">Dynamic Wraps &amp; Tint · Est. Marin County</div>
