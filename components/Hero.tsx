@@ -30,29 +30,43 @@ const SLIDES = [
 export default function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="hero__bg">
-        <Swiper
-          modules={[Autoplay, EffectFade]}
-          effect="fade"
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          loop
-          className="hero__swiper"
-          aria-hidden="true"
-        >
-          {SLIDES.map((slide, i) => (
-            <SwiperSlide key={slide.src}>
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                priority={i === 0}
-                style={{ objectFit: "cover" }}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="hero__overlay" aria-hidden="true" />
-      </div>
+      {/*<div className="hero__bg">*/}
+      {/*  <Swiper*/}
+      {/*    modules={[Autoplay, EffectFade]}*/}
+      {/*    effect="fade"*/}
+      {/*    autoplay={{ delay: 4000, disableOnInteraction: false }}*/}
+      {/*    loop*/}
+      {/*    className="hero__swiper"*/}
+      {/*    aria-hidden="true"*/}
+      {/*  >*/}
+      {/*    {SLIDES.map((slide, i) => (*/}
+      {/*      <SwiperSlide key={slide.src}>*/}
+      {/*        <Image*/}
+      {/*          src={slide.src}*/}
+      {/*          alt={slide.alt}*/}
+      {/*          fill*/}
+      {/*          priority={i === 0}*/}
+      {/*          style={{ objectFit: "cover" }}*/}
+      {/*        />*/}
+      {/*      </SwiperSlide>*/}
+      {/*    ))}*/}
+      {/*  </Swiper>*/}
+      {/*  <div className="hero__overlay" aria-hidden="true" />*/}
+      {/*</div>*/}
+
+        <div className="hero__bg">
+            <video
+                className="hero__video"
+                autoPlay
+                muted
+                loop
+                playsInline
+            >
+                <source src="/hero.mp4" type="video/mp4" />
+            </video>
+
+            <div className="hero__overlay" aria-hidden="true" />
+        </div>
 
       <div className="hero__inner">
         <div className="hero__body">

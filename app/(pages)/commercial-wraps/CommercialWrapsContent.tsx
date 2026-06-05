@@ -99,7 +99,7 @@ export default function CommercialWrapsContent() {
             <div>
               <div className="eyebrow"><span className="dot" />What&apos;s Included</div>
               <h2 className="section__title">
-                How We<br /><span className="accent">Do It.</span>
+                How <br/>We<br/><span className="accent">Do It.</span>
               </h2>
             </div>
             <p className="section__desc">

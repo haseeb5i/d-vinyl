@@ -22,14 +22,21 @@
     --gold:        #FAAB18;
     --gold-2:      #FCD404;
 
-    --font-display: var(--font-raleway), "Helvetica Neue", Arial, sans-serif;
-    --font-sans:    var(--font-raleway), "Helvetica Neue", Arial, sans-serif;
-    --font-mono:    var(--font-raleway), "Helvetica Neue", Arial, sans-serif;
+    /*--font-display: var(--font-raleway), "Helvetica Neue", Arial, sans-serif;*/
+    /*--font-sans:    var(--font-raleway), "Helvetica Neue", Arial, sans-serif;*/
+    /*--font-mono:    var(--font-raleway), "Helvetica Neue", Arial, sans-serif;*/
+
+    --font-display: var(--font-poppins), sans-serif;
+    --font-sans: var(--font-poppins), sans-serif;
+    --font-mono: var(--font-poppins), sans-serif;
 
     --fw-body:     500;
     --fw-semibold: 600;
     --fw-bold:     700;
     --fw-display:  800;
+    --fw-extrabold:  900;
+
+    --font-size-base: 22px;
 
     --ls-display:       -0.025em;
     --ls-display-soft:  -0.01em;
@@ -420,12 +427,12 @@ body::after {
     overflow: hidden;
     isolation: isolate;
 }
-.hero__bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-}
+/*.hero__bg {*/
+/*    position: absolute;*/
+/*    inset: 0;*/
+/*    z-index: 0;*/
+/*    overflow: hidden;*/
+/*}*/
 .hero__bg img {
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
@@ -3593,4 +3600,24 @@ body::after {
     .gallery-card--wide { grid-column: span 1; }
     .gallery-card--wide .gallery-card__frame { aspect-ratio: 4 / 3; }
     .gallery-cta__inner { padding: 32px 16px; }
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); /* adjust as needed */
 }
