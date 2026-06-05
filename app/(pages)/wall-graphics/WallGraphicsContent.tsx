@@ -139,7 +139,7 @@ export default function WallGraphicsContent() {
             <div>
               <div className="eyebrow"><span className="dot" />Benefits of Wall Graphics</div>
               <h2 className="section__title">
-                Why Wall<br /><span className="accent">Graphics?</span>
+                Why <br />Wall<br/><span className="accent">Graphics?</span>
               </h2>
             </div>
             <p className="section__desc">

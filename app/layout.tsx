@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
+import { Poppins } from "next/font/google";
 import StickyBanner from "@/components/StickyBanner";
 import "./globals.css";
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-raleway",
-  display: "swap",
+// const raleway = Raleway({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700", "800"],
+//   variable: "--font-raleway",
+//   display: "swap",
+// });
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800"],
+    variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={raleway.variable}>
+    <html lang="en" className={poppins.variable}>
       <body>
         <StickyBanner />
         {children}
